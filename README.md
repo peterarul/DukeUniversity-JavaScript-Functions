@@ -1,0 +1,2 @@
+# swapRedGreen
+Write a JavaScript program that has a function named swapRedGreen with one parameter pixel. This function should swap the red and green values of the pixel. Pick an image, print the image, then apply swapRedGreen to every pixel in the image, and print the new image. The choice of your image is important. For some images you may not notice any change. Think about what type of image you should use for testing your function.
