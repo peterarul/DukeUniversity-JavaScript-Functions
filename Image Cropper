@@ -18,6 +18,35 @@ function crop(image,width,height) {
     return croppedimage;
 }
 
+function pixchange(pixelValue){
+    return Math.floor(pixelValue/16) * 16;
+}
+
+function chop2hide(image){
+ for(var px of image.values()){
+ px.setRed(pixchange(px.getRed()));
+ px.setGreen(pixchange(px.getGreen()));
+ px.setBlue(pixchange(px.getBlue()));
+ }
+ return image;
+}
+
+
+function shift(secondimage){
+ var shiftimage = new SimpleImage(secondimage.getWidth(), 
+ secondimage.getHeight());
+ for(var pix of secondimage.values()){
+ var x = pix.getX();
+ var y = pix.getY();
+ var shiftpix = shiftimage.getPixel(x,y);
+ shiftpix.setRed(Math.floor(pix.getRed()/16));
+ shiftpix.setGreen(Math.floor(pix.getGreen()/16));
+ shiftpix.setBlue(Math.floor(pix.getBlue()/16));
+ }
+ return shiftimage;
+}
+
+
 var firstwidth = first.getWidth();
 var firstheight = second.getHeight();
 var secondwidth = second.getWidth();
@@ -40,5 +69,11 @@ print("Cropped image");
 print("First: ","\n","width: ",croppedfirst.getWidth(),"\n","Height: ",croppedfirst.getHeight());
 print("Second: ","\n","width: ",croppedsecond.getWidth(),"\n","Height: ",croppedsecond.getHeight());
 print(croppedfirst, croppedsecond);
+
+var start = chop2hide(croppedfirst);
+print(start);
+var hide = shift(croppedsecond);
+print(hide);
+
 
 
